@@ -14,4 +14,5 @@ COPY --from=build /app/target/chat-universal-1.0.0.jar app.jar
 RUN mkdir data uploads
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Constrói a URL do JDBC em tempo de execução usando as variáveis do Render
+ENTRYPOINT ["sh", "-c", "export SPRING_DATASOURCE_URL=jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME && java -jar app.jar"]
