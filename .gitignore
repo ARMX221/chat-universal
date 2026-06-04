@@ -1,0 +1,34 @@
+# Build
+target/
+*.jar
+*.war
+*.class
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data (local only)
+data/
+uploads/
+
+# JDK and Maven local (downloaded for local dev)
+jdk/
+maven/
+
+# Logs
+*.log

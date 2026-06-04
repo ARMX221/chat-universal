@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: chat-universal
+    env: docker
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_HOST
+        fromDatabase:
+          name: chat-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: chat-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: chat-db
+          property: database
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: chat-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: chat-db
+          property: password
+      - key: CLOUDINARY_URL
+        sync: false # Pede para você preencher isso manualmente no dashboard
+
+databases:
+  - name: chat-db
+    databaseName: chatuniversal
+    user: chatuser
+    plan: free

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Universal</title>
+    <meta name="description" content="Chat Universal — Converse em tempo real com seus amigos, sem cadastro.">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- ═══════════════════ ANIMATED BACKGROUND ═══════════════════ -->
+    <div class="bg-animation">
+        <div class="bg-orb bg-orb--1"></div>
+        <div class="bg-orb bg-orb--2"></div>
+        <div class="bg-orb bg-orb--3"></div>
+    </div>
+
+    <!-- ═══════════════════ LOGIN SCREEN ═══════════════════ -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="logo-bubble">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
+                        <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
+                        <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
+                    </svg>
+                </div>
+                <h1 class="login-title">Chat Universal</h1>
+                <p class="login-subtitle">Converse em tempo real com seus amigos</p>
+            </div>
+            <div class="login-form">
+                <div class="input-wrapper">
+                    <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <input type="text" id="username-input" placeholder="Digite seu apelido..." maxlength="30" autocomplete="off" spellcheck="false">
+                </div>
+                <button id="login-btn" class="btn-primary" type="button">
+                    <span>Entrar no Chat</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="login-footer">
+                <span>Sem cadastro • Sem senha • Só diversão 🎉</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ CHAT SCREEN ═══════════════════ -->
+    <div id="chat-screen" class="chat-screen hidden">
+        <div class="chat-container">
+            <!-- Header -->
+            <header id="chat-header" class="chat-header">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <div class="header-info">
+                        <h2>Chat Universal</h2>
+                        <div id="connection-status" class="status-bar">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Conectando...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div id="user-badge" class="user-badge"></div>
+                </div>
+            </header>
+
+            <!-- Messages Area -->
+            <main id="messages-container" class="messages-container">
+                <div id="messages-list" class="messages-list">
+                    <!-- Welcome message -->
+                    <div class="system-message" id="welcome-msg">
+                        <div class="system-message-content">
+                            <span>👋</span> Bem-vindo ao <strong>Chat Universal</strong>! As mensagens aparecem aqui em tempo real.
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Input Area -->
+            <footer class="chat-footer">
+                <div class="chat-input-area">
+                    <button id="attach-btn" class="icon-btn" title="Anexar arquivo" type="button">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                        </svg>
+                    </button>
+                    <input type="file" id="file-input" hidden multiple>
+                    <div class="message-input-wrapper">
+                        <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off" spellcheck="false">
+                    </div>
+                    <button id="send-btn" class="send-btn" title="Enviar mensagem" type="button">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ UPLOAD PROGRESS OVERLAY ═══════════════════ -->
+    <div id="upload-overlay" class="upload-overlay hidden">
+        <div class="upload-card">
+            <div class="upload-spinner"></div>
+            <p class="upload-text">Enviando arquivo...</p>
+            <div class="upload-progress-bar">
+                <div id="upload-progress-fill" class="upload-progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ TOAST NOTIFICATIONS ═══════════════════ -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
