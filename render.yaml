@@ -30,6 +30,8 @@ services:
           property: password
       - key: CLOUDINARY_URL
         sync: false # Pede para você preencher isso manualmente no dashboard
+      - key: FORCE_REDEPLOY
+        value: "1"
 
 databases:
   - name: chat-db
