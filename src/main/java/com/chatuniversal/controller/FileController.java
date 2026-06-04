@@ -65,9 +65,10 @@ public class FileController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest()
                     .body(Map.of("error", e.getMessage()));
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError()
-                    .body(Map.of("error", "Falha ao enviar arquivo"));
+                    .body(Map.of("error", "Erro interno: " + e.getMessage()));
         }
     }
 
